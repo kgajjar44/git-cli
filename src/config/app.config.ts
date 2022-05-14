@@ -22,6 +22,6 @@ export enum ConsoleMessage {
 }
 
 export const CONFIG = {
-    GIT_URL: "http://199.188.246.131:8888/api/v4/",
-    PERSONAL_TOKEN: "6vBUVoveHPm8wBsGwqiY"
+    GIT_URL: "",
+    PERSONAL_TOKEN: ""
 }
