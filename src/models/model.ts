@@ -2,7 +2,9 @@ import { HTTPMethods } from "../config/app.config";
 
 export interface Answer {
     projectGroupId: number;
-    repoUrl: string;
+    repoDetail: any;
+    startDate: string;
+    endDate: string;
 }
 
 export interface HTTPConfig {

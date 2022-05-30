@@ -1,8 +1,13 @@
 import inquirer from 'inquirer';
+import moment from 'moment';
 
 import { Answer } from '../models/model';
 
 export class QuestionsList {
+
+    constructor() {
+        inquirer.registerPrompt('datepicker', require('inquirer-datepicker'));
+    }
 
     async projectGroupQuestion(projectGroupDetails: any): Promise<Answer> {
         let listOfProjectGroup = projectGroupDetails.map((projectGroup: any) => {
@@ -29,6 +34,28 @@ export class QuestionsList {
             message: 'Which project group you want to select?',
             choices: listOfRepos,
         }]);
+    
+    }
+
+    async projectDateSelection(dateQuestionConfig: any): Promise<Answer> {
+        let dateConfig: any = { 
+            name: dateQuestionConfig.name,
+            type: 'datepicker',
+            message: dateQuestionConfig.questionDesc,
+            format: ['Y', '-', 'MM', '-', 'DD', 'T', 'HH', ':', 'mm', ':', 'ss', 'Z'],
+            max: {
+                year: moment().format("YYYY"),
+                month: moment().format("MM"),
+                day: moment().format("DD"),
+                hour: moment().format("HH")
+            }
+        }
+
+        if (!!dateQuestionConfig.minDateConfig) {
+            dateConfig.min = dateQuestionConfig.minDateConfig;
+        }
+
+        return inquirer.prompt([dateConfig]);
     
     }
 
