@@ -29,5 +29,5 @@ export async function GitCLI(): Promise<any> {
     }));
     console.info(providerAnswer);
     let commitData = await gitService.getCommitList(providerAnswer);
-    gitService.generateExcel(commitData);
+    gitService.generateExcel(commitData, providerAnswer);
 }
